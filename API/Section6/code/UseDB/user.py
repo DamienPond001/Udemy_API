@@ -10,7 +10,7 @@ class User:
       
    @classmethod
    def find_by_username(cls, username):
-      connection = sqlite3.connect('../../data.db')
+      connection = sqlite3.connect('data.db')
       cursor = connection.cursor()
       
       select_query = "SELECT * FROM users WHERE username = ?"
@@ -28,7 +28,7 @@ class User:
    
    @classmethod
    def find_by_id(cls, _id):
-      connection = sqlite3.connect('../../data.db')
+      connection = sqlite3.connect('data.db')
       cursor = connection.cursor()
       
       select_query = "SELECT * FROM users WHERE id = ?"
@@ -59,12 +59,15 @@ class UserRegister(Resource):
    
    
    def post(self):
+      new_user = UserRegister.parser.parse_args()
+      
+      if User.find_by_username(new_user['username']) is not None:
+         return {"message" : "User already created"}, 400
+      
       connection = sqlite3.connect('data.db')
       cursor = connection.cursor()
       
       query = "INSERT INTO users VALUES (NULL, ?, ?)"
-      
-      new_user = UserRegister.parser.parse_args()
       
       cursor.execute(query, (new_user['username'], new_user['password']))
       
