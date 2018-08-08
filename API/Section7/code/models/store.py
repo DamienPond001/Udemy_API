@@ -24,6 +24,7 @@ class StoreModel(db.Model):
        
       
    def save_to_db(self): # can update as well
+      print("here")
       db.session.add(self)  #directly translate from object to row
       db.session.commit()
       

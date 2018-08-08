@@ -14,12 +14,14 @@ class Store(Resource):
    def post(self, name):
       
       store = StoreModel.find_by_name(name)
-      
+      print(store)
       if store is not None:
          return {"message": "Store exists"} , 400
       
+      store = StoreModel(name)
       try:
          store.save_to_db()
+      #except Exception as e: print(e)
       except:
          return {"message" : "An error occurred"}, 500
       
