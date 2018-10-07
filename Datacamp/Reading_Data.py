@@ -20,7 +20,11 @@ data = np.loadtxt(filename, delimiter = "'", skiprows = 1, usecols=[0, 2], dtype
 import pandas as pd
 
 data = pd.read_csv(filename,  sep = '\t', comment='#', na_values='Nothing')  #comment drops everything after '#', na_values are user specified nulls
-
+#header=0 and names=new_names will label the rows
+#parse_date does something
+#index_col specifies which col should be the index
+                   
+                   
 data.head() #prints first 5 rows .head(10) displays 10 rows
 
 data_array = data.values   #converts to numpy array
