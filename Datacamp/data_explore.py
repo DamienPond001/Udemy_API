@@ -14,6 +14,11 @@ df.describe()
 #Display frequencies of categorical columns
 df['Borough'].value_counts(dropna=False)
 
+#display means and counts of columns
+df[['col1', 'col2']].count()
+df[['col1', 'col2']].mean()
+
+df['2015'].quantile([0.05, 0.95])
 
 # Import matplotlib.pyplot
 import matplotlib.pyplot as plt
